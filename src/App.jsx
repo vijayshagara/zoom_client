@@ -17,6 +17,7 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import moment from "moment";
 import CircularProgress from "@mui/material/CircularProgress";
+import api from "../api/api";
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -84,8 +85,8 @@ function App() {
     try {
       setLoading(true);
       e.preventDefault();
-      const res = await axios.post("http://localhost:3000/api", formData);
-      if (res.data) {
+      const data = await api(formData)
+      if (data) {
         setFormData(initialFormState);
         setLoading(false);
       }
